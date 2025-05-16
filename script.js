@@ -1,11 +1,27 @@
-// Toggle mobile menu
-document.getElementById("menuToggle").addEventListener("click", () => {
-  document.getElementById("navLinks").classList.toggle("active");
-});
+let input = document.getElementById('inputBox');
+let buttons = document.querySelectorAll('button');
 
-// Simple form handling
-document.getElementById("contactForm").addEventListener("submit", function (e) {
-  e.preventDefault();
-  alert("Thanks for reaching out!");
-  this.reset();
-});
+let string = "";
+let arr = Array.from(buttons);
+arr.forEach(button => {
+    button.addEventListener('click', (e) =>{
+        if(e.target.innerHTML == '='){
+            string = eval(string);
+            input.value = string;
+        }
+
+        else if(e.target.innerHTML == 'AC'){
+            string = "";
+            input.value = string;
+        }
+        else if(e.target.innerHTML == 'DEL'){
+            string = string.substring(0, string.length-1);
+            input.value = string;
+        }
+        else{
+            string += e.target.innerHTML;
+            input.value = string;
+        }
+        
+    })
+})
