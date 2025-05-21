@@ -1,27 +1,17 @@
-let input = document.getElementById('inputBox');
-let buttons = document.querySelectorAll('button');
+// Smooth scroll behavior
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute("href"));
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+});
 
-let string = "";
-let arr = Array.from(buttons);
-arr.forEach(button => {
-    button.addEventListener('click', (e) =>{
-        if(e.target.innerHTML == '='){
-            string = eval(string);
-            input.value = string;
-        }
-
-        else if(e.target.innerHTML == 'AC'){
-            string = "";
-            input.value = string;
-        }
-        else if(e.target.innerHTML == 'DEL'){
-            string = string.substring(0, string.length-1);
-            input.value = string;
-        }
-        else{
-            string += e.target.innerHTML;
-            input.value = string;
-        }
-        
-    })
-})
+// Basic contact form handler (optional)
+document.getElementById("contact-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+  alert("Message sent! (Not really – add a backend to make it real!)");
+  this.reset();
+});
